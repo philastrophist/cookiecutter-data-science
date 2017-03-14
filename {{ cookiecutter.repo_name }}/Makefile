@@ -47,11 +47,7 @@ sync_data_from_s3:
 create_environment:
 ifeq (True,$(HAS_CONDA))
 		@echo ">>> Detected conda, creating conda environment."
-ifeq (3,$(findstring 3,$(PYTHON_INTERPRETER)))
-	conda create --name $(PROJECT_NAME) python=3.5
-else
-	conda create --name $(PROJECT_NAME) python=2.7
-endif
+		conda create --name $(PROJECT_NAME) python=$(PYTHON_INTERPRETER)
 		@echo ">>> New conda env created. Activate with:\nsource activate $(PROJECT_NAME)"
 else
 	@pip install -q virtualenv virtualenvwrapper
@@ -63,7 +59,7 @@ endif
 
 ## Test python environment is setup correctly
 test_environment:
-	$(PYTHON_INTERPRETER) test_environment.py
+	python test_environment.py
 
 #################################################################################
 # PROJECT RULES                                                                 #

@@ -5,9 +5,9 @@ REQUIRED_PYTHON = "{{ cookiecutter.python_interpreter }}"
 
 def main():
     system_major = sys.version_info.major
-    if REQUIRED_PYTHON == "python":
+    if REQUIRED_PYTHON.split()[0] == "2":
         required_major = 2
-    elif REQUIRED_PYTHON == "python3":
+    elif REQUIRED_PYTHON.split()[0] == "3":
         required_major = 3
     else:
         raise ValueError("Unrecognized python interpreter: {}".format(
